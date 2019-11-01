@@ -22,11 +22,11 @@ public class CRUD {
 
     public void save(String name, String capital)
     {
-        Country negara = new Country(countryName,capitalName);
+        Country negara = new Country(name,capital);
         countries.add(negara);
     }
 
-    public ArrayList<String> getCountries()
+    public ArrayList<Country> getCountries()
     {
 
         return countries;
@@ -36,7 +36,8 @@ public class CRUD {
     {
        try {
            countries.remove(position);
-           countries.add(position,newName,newCapital);
+           Country coun = new Country(newName, newCapital);
+           countries.add(position, coun);
 
            return true;
        }catch (Exception e)

@@ -79,7 +79,8 @@ public class MainActivity extends AppCompatActivity {
             addBtn.setEnabled(true);
             updateBtn.setEnabled(true);
             deleteBtn.setEnabled(true);
-            nameEditTxt.setText(crud.getCountries().get(pos));
+            nameEditTxt.setText(crud.getCountries().get(pos).getCountry());
+            capitalEditTxt.setText(crud.getCountries().get(pos).getCapital());
         }
 
         addBtn.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //GET DATA
                 String name=nameEditTxt.getText().toString();
-                String capital=capitalEditText.getText().toString();
+                String capital=capitalEditTxt.getText().toString();
 
                 //VALIDATE
                 if(name.length()>0 && name != null && capital.length()>0 && capital != null)
@@ -95,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                     //save
                     crud.save(name, capital);
                     nameEditTxt.setText("");
-                    capitalEditText.setText("");
+                    capitalEditTxt.setText("");
                     adapter=new CountryAdapter(ini,crud.getCountries());
                     lv.setAdapter(adapter);
 
@@ -110,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //GET DATA
                 String newName=nameEditTxt.getText().toString();
-                String newCapital=capitalEditText.getText().toString();
+                String newCapital=capitalEditTxt.getText().toString();
 
                 //VALIDATE
                 if(newName.length()>0 && newName != null)
@@ -119,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                     if(crud.update(pos,newName,newCapital))
                     {
                         nameEditTxt.setText(newName);
-                        capitalEditText.setText(capitalEditText);
+                        capitalEditTxt.setText(newCapital);
                         adapter=new CountryAdapter(ini,crud.getCountries());
                         lv.setAdapter(adapter);
                     }
